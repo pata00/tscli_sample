@@ -12,10 +12,18 @@ args = parser.parse_args()
 print("args=", args)
 
 
+test_size = 100000
+
 def distance_role_0():
-    arr = [1, 2, 3, 4]
+    arr = []
+
+    for i in range(0, test_size):
+        arr.append(i + 1)
+
+
+
     dtype = "int32"
-    shape = [4]
+    shape = [test_size]
 
     req = secure_operate_pb2.ExecuteRequest(
         taskId="a",
@@ -68,9 +76,14 @@ def distance_role_0():
 
 
 def distance_role_1():
-    arr = np.array([5, 6, 7, 8])
+    arr = []
+
+    for i in range(0, test_size):
+        arr.append(i + 3)
+
     dtype = "int32"
-    shape = [4]
+    shape = [test_size]
+
 
     req = secure_operate_pb2.ExecuteRequest(
         taskId="a",
