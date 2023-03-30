@@ -6,9 +6,9 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--role", type=int, default=-1, choices=[-1, 0, 1],
                     help="role, defalut value is -1, mean run all role")
-parser.add_argument("-t", "--taskid", type=int, default="taskId", 
+parser.add_argument("-t", "--taskid", type=str, default="taskId", 
                     help="role, defalut value is taskid")
-parser.add_argument("-s", "--sub_taskid", type=int, default="subTaskId", 
+parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId", 
                     help="role, defalut value is subTaskId")
 
 args = parser.parse_args()

@@ -8,9 +8,9 @@ import define_parties
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--role", type=int, default=-1, choices=[-1, 0, 1],
                     help="role, defalut value is -1, mean run all role")
-parser.add_argument("-t", "--taskid", type=int, default="taskId", 
+parser.add_argument("-t", "--taskid", type=str, default="taskId", 
                     help="role, defalut value is taskid")
-parser.add_argument("-s", "--sub_taskid", type=int, default="subTaskId", 
+parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId", 
                     help="role, defalut value is subTaskId")
 parser.add_argument("-a", "--async_mode", type=int, default=0, choices=[0, 1],
                     help="async, defalut value is 1, mean use TensorClient, otherwise use AsyncTensorClient")
