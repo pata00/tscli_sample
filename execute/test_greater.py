@@ -7,6 +7,10 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--role", type=int, default=-1, choices=[-1, 0, 1],
                     help="role, defalut value is -1, mean run all role")
+parser.add_argument("-t", "--taskid", type=int, default="taskId", 
+                    help="role, defalut value is taskid")
+parser.add_argument("-s", "--sub_taskid", type=int, default="subTaskId", 
+                    help="role, defalut value is subTaskId")
 
 args = parser.parse_args()
 print("args=", args)
@@ -18,8 +22,8 @@ def greater_role_0():
     shape = [4]
 
     req = secure_operate_pb2.ExecuteRequest(
-        taskId="a",
-        subTaskId="b",
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
         asyncMode=False,
         timeout=0,
         mpcProtocol=secure_operate_pb2.MpcProtocol(
@@ -72,8 +76,8 @@ def greater_role_1():
     shape = [4]
 
     req = secure_operate_pb2.ExecuteRequest(
-        taskId="a",
-        subTaskId="b",
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
         asyncMode=False,
         timeout=0,
         mpcProtocol=secure_operate_pb2.MpcProtocol(

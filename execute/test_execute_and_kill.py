@@ -1,7 +1,15 @@
 import asyncio
 from tscli import AsyncTensorClient, secure_operate_pb2, packer
 import define_parties
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("-t", "--taskid", type=int, default="taskId", 
+                    help="role, defalut value is taskid")
+parser.add_argument("-s", "--sub_taskid", type=int, default="subTaskId", 
+                    help="role, defalut value is subTaskId")
+args = parser.parse_args()
+print("args=", args)
 
 async def vds_role_0_and_kill():
     arr = [1, 2, 3, 4]
@@ -9,8 +17,8 @@ async def vds_role_0_and_kill():
     shape = [len(arr)]
 
     req = secure_operate_pb2.ExecuteRequest(
-        taskId="a",
-        subTaskId="b",
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
         asyncMode=True,
         timeout=0,
         mpcProtocol=secure_operate_pb2.MpcProtocol(

@@ -8,6 +8,10 @@ import define_parties
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--role", type=int, default=-1, choices=[-1, 0, 1],
                     help="role, defalut value is -1, mean run all role")
+parser.add_argument("-t", "--taskid", type=int, default="taskId", 
+                    help="role, defalut value is taskid")
+parser.add_argument("-s", "--sub_taskid", type=int, default="subTaskId", 
+                    help="role, defalut value is subTaskId")
 
 args = parser.parse_args()
 print("args=", args)
@@ -18,8 +22,8 @@ def vds_role0_req():
     dtype = "int32"
     shape = [len(arr)]
     return secure_operate_pb2.ExecuteRequest(
-        taskId="a",
-        subTaskId="b",
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
         asyncMode=True,
         timeout=0,
         mpcProtocol=secure_operate_pb2.MpcProtocol(
@@ -63,8 +67,8 @@ def vds_role1_req():
     shape = [len(arr)]
 
     return secure_operate_pb2.ExecuteRequest(
-        taskId="a",
-        subTaskId="b",
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
         asyncMode=True,
         timeout=0,
         mpcProtocol=secure_operate_pb2.MpcProtocol(
