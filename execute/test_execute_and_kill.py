@@ -4,12 +4,13 @@ import define_parties
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-t", "--taskid", type=str, default="taskId", 
+parser.add_argument("-t", "--taskid", type=str, default="taskId",
                     help="role, defalut value is taskid")
-parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId", 
+parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId",
                     help="role, defalut value is subTaskId")
 args = parser.parse_args()
 print("args=", args)
+
 
 async def vds_role_0_and_kill():
     arr = [1, 2, 3, 4]
@@ -60,7 +61,8 @@ async def vds_role_0_and_kill():
 
     assert(resp.code == 0)
 
-    kill_resp = await client.kill(secure_operate_pb2.TaskTabRequest(taskId="a", subTaskId="b", localPartyId=define_parties.role0))
+    kill_resp = await client.kill(secure_operate_pb2.TaskTabRequest(taskId=args.taskid,
+                                                                    subTaskId=args.sub_taskid,  localPartyId=define_parties.role0))
     print(kill_resp)
 
 

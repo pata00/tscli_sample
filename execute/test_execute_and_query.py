@@ -8,9 +8,9 @@ import define_parties
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--role", type=int, default=-1, choices=[-1, 0, 1],
                     help="role, defalut value is -1, mean run all role")
-parser.add_argument("-t", "--taskid", type=str, default="taskId", 
+parser.add_argument("-t", "--taskid", type=str, default="taskId",
                     help="role, defalut value is taskid")
-parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId", 
+parser.add_argument("-s", "--sub_taskid", type=str, default="subTaskId",
                     help="role, defalut value is subTaskId")
 
 args = parser.parse_args()
@@ -115,7 +115,9 @@ async def vds_role_0_and_query():
     await asyncio.sleep(3)
 
     resp = await client.query(secure_operate_pb2.TaskTabRequest(
-        taskId="a", subTaskId="b", localPartyId=define_parties.role0))
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid,
+        localPartyId=define_parties.role0))
 
     result = resp.result[0]
     val = packer.unpack_from_bytes(
@@ -133,7 +135,8 @@ async def vds_role_1_and_query():
     await asyncio.sleep(3)
 
     resp = await client.query(secure_operate_pb2.TaskTabRequest(
-        taskId="a", subTaskId="b", localPartyId=define_parties.role1))
+        taskId=args.taskid,
+        subTaskId=args.sub_taskid, localPartyId=define_parties.role1))
 
     result = resp.result[0]
     val = packer.unpack_from_bytes(
